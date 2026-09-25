@@ -13,6 +13,21 @@
 
 ## Progress log
 
+### 2026-09-25: Make repository public and publish release v1.0
+
+**Duration:** ~5 minutes
+**Status:** Done
+
+#### What changed
+- Changed repository visibility to public on GitHub
+- Created standalone release package Gemini-Generator-v1.0.zip containing all unpacked extension assets
+- Published GitHub release v1.0 with release notes and downloadable zip archive
+
+#### Files touched
+- `PROGRESS.md`: Recorded repository publication and release v1.0
+
+---
+
 ### 2026-09-25: Fix unchecked runtime.lastError receiving end connection error
 
 **Duration:** ~5 minutes
