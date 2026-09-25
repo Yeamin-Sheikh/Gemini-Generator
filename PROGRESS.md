@@ -13,6 +13,23 @@
 
 ## Progress log
 
+### 2026-09-25: Fix unchecked runtime.lastError receiving end connection error
+
+**Duration:** ~5 minutes
+**Status:** Done
+
+#### What changed
+- Added `chrome.runtime.onConnect` listener in background service worker to accept side panel port connections
+- Wrapped `chrome.runtime.connect` in side panel initialization with error-handling disconnect listener
+- Properly accessed `lastError.message` on tab cancellation messages to clear Chromium error tracking
+
+#### Files touched
+- `assets/index.ts-BsTj4G4z.js`: Added onConnect listener in service worker
+- `assets/index.html-CFx1nEy_.js`: Handled onDisconnect in side panel and verified lastError access
+- `PROGRESS.md`: Recorded connection fix
+
+---
+
 ### 2026-09-25: Optimize for local use and apply Electric Indigo theme
 
 **Duration:** ~15 minutes
