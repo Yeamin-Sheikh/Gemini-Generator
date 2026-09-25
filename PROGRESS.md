@@ -13,6 +13,30 @@
 
 ## Progress log
 
+### 2026-09-25: Optimize for local use and apply Electric Indigo theme
+
+**Duration:** ~15 minutes
+**Status:** Done
+
+#### What changed
+- Removed top header containing title, version, author links, user guide, Discord icon, and paywall banners
+- Positioned control tabs at the top of the side panel to optimize vertical space
+- Embedded 16 Gemini DOM selectors locally in remoteConfig.js, eliminating remote server dependency
+- Removed post-install tab opening logic from background service worker
+- Stripped 5 watermark promo links across video and image panels
+- Bypassed 10-prompt daily quota to unlock unlimited local prompt batches
+- Applied Electric Indigo (#4F46E5 / #6366F1) palette across Tailwind and PrimeVue tokens
+- Replaced dark mode surfaces with slate navy (#0F172A)
+
+#### Files touched
+- `assets/remoteConfig-CLW4nOVG.js`: Embedded offline selectors and removed remote fetches
+- `assets/index.ts-BsTj4G4z.js`: Cleaned up onInstalled listener
+- `assets/index-BLc8tHC3.css`: Updated :root and .dark variables to Electric Indigo and slate navy
+- `assets/index.html-CFx1nEy_.js`: Removed top header, removed watermark links, unlocked quotas, switched PrimeVue to indigo
+- `PROGRESS.md`: Recorded local optimization and recolor updates
+
+---
+
 ### 2026-09-25: Remove language options, rename to Gemini Generator, and bump version to 1.0
 
 **Duration:** ~10 minutes
