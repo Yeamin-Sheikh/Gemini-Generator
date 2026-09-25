@@ -13,6 +13,27 @@
 
 ## Progress log
 
+### 2026-09-25: Redesign banner to 21:9 ultrawide panoramic studio console
+
+**Duration:** ~10 minutes
+**Status:** Done
+
+#### What changed
+- Replaced the generic diffusion banner with an engineered 21:9 panoramic banner (2100x900)
+- Designed an ultrawide studio console showcasing authentic extension capabilities: execution parameters, 3-card live batch queue, and auto-captured media outputs
+- Embedded Plus Jakarta Sans and JetBrains Mono fonts offline via base64 data URIs for crisp typography
+- Rendered pixel-perfect output to `assets/banner.png` via headless Playwright engine
+- Provided reproducible generation assets (`assets/banner_template.html`, `assets/embedded_fonts.css`, and `render_banner.py`)
+
+#### Files touched
+- `assets/banner.png`: Updated 21:9 panoramic graphic asset
+- `assets/banner_template.html`: HTML template for banner layout
+- `assets/embedded_fonts.css`: Base64 embedded typography definitions
+- `render_banner.py`: Headless rendering script
+- `PROGRESS.md`: Recorded banner redesign
+
+---
+
 ### 2026-09-25: Add visual banner to README
 
 **Duration:** ~5 minutes

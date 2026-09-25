@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gemini Generator Panoramic 21:9</title>
+  <link rel="stylesheet" href="embedded_fonts.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 2100px;
+      height: 900px;
+      overflow: hidden;
+      background-color: #06090F;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: #F8FAFC;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      padding: 55px 80px 0 80px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ambient lighting & background grid */
+    .top-edge-highlight {
+      position: absolute;
+      top: 0;
+      left: 15%;
+      right: 15%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5) 30%, rgba(129, 140, 248, 0.8) 50%, rgba(99, 102, 241, 0.5) 70%, transparent);
+      z-index: 4;
+    }
+
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 95% 85% at 50% 40%, #000 30%, transparent 95%);
+      z-index: 1;
+    }
+
+    .ambient-glow-top {
+      position: absolute;
+      top: -120px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1100px;
+      height: 550px;
+      background: radial-gradient(ellipse, rgba(79, 70, 229, 0.28) 0%, rgba(99, 102, 241, 0.12) 42%, transparent 72%);
+      filter: blur(80px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .ambient-glow-bottom {
+      position: absolute;
+      bottom: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1400px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(67, 56, 202, 0.25) 0%, rgba(30, 27, 75, 0.1) 48%, transparent 75%);
+      filter: blur(90px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Top Hero Section */
+    .hero-section {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 1200px;
+    }
+
+    .pill-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 7px 18px;
+      border-radius: 9999px;
+      background: rgba(79, 70, 229, 0.14);
+      border: 1px solid rgba(99, 102, 241, 0.38);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #A5B4FC;
+      margin-bottom: 18px;
+      box-shadow: 0 0 24px rgba(79, 70, 229, 0.25);
+    }
+
+    .pill-beacon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #818CF8;
+      box-shadow: 0 0 10px #818CF8, 0 0 18px #6366F1;
+    }
+
+    .brand-title {
+      font-size: 78px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+      background: linear-gradient(180deg, #FFFFFF 30%, #CBD5E1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .brand-icon-box {
+      width: 62px;
+      height: 62px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #4F46E5 0%, #6366F1 100%);
+      border-radius: 17px;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 0 10px 28px -4px rgba(79, 70, 229, 0.65);
+      flex-shrink: 0;
+    }
+
+    .brand-subtitle {
+      font-size: 21px;
+      line-height: 1.5;
+      color: #94A3B8;
+      font-weight: 500;
+      margin-bottom: 22px;
+      max-width: 950px;
+    }
+
+    .features-ribbon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 26px;
+    }
+
+    .feature-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 10px;
+      background: rgba(15, 23, 42, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 13.5px;
+      font-weight: 600;
+      color: #E2E8F0;
+      backdrop-filter: blur(10px);
+    }
+
+    .chip-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .chip-icon.indigo { color: #818CF8; }
+    .chip-icon.emerald { color: #34D399; }
+    .chip-icon.sky { color: #38BDF8; }
+    .chip-icon.amber { color: #FBBF24; }
+
+    /* Panoramic Bottom Console */
+    .console-container {
+      position: relative;
+      z-index: 2;
+      width: 1760px;
+      height: 480px;
+      background: #0B1120;
+      border-top-left-radius: 24px;
+      border-top-right-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-bottom: none;
+      box-shadow: 
+        0 -15px 50px -10px rgba(0, 0, 0, 0.8),
+        0 0 65px rgba(79, 70, 229, 0.22);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Console Titlebar */
+    .console-titlebar {
+      background: #0F172A;
+      padding: 14px 28px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mac-buttons {
+      display: flex;
+      gap: 9px;
+    }
+
+    .mac-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+
+    .mac-dot.red { background: #EF4444; opacity: 0.85; }
+    .mac-dot.yellow { background: #F59E0B; opacity: 0.85; }
+    .mac-dot.green { background: #10B981; opacity: 0.85; }
+
+    .console-nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-tab {
+      padding: 7px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 8px;
+      color: #94A3B8;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-tab.active {
+      background: #4F46E5;
+      color: #FFFFFF;
+      box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45);
+    }
+
+    .status-badge-chip {
+      font-size: 12px;
+      font-weight: 700;
+      color: #34D399;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 5px 12px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #34D399;
+      box-shadow: 0 0 8px #34D399;
+    }
+
+    /* Console Multi-Column Body */
+    .console-body {
+      flex: 1;
+      padding: 22px 28px;
+      display: grid;
+      grid-template-columns: 380px 1fr 420px;
+      gap: 24px;
+      background: #080D1A;
+    }
+
+    /* Column 1: Config & Selectors */
+    .col-sidebar {
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .col-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #F1F5F9;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+
+    .config-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .config-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      padding: 8px 12px;
+      background: rgba(15, 23, 42, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+    }
+
+    .config-row-label {
+      color: #94A3B8;
+      font-weight: 500;
+    }
+
+    .config-row-val {
+      color: #F8FAFC;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+    }
+
+    .val-active { color: #34D399; }
+    .val-indigo { color: #A5B4FC; }
+
+    .selector-status-box {
+      background: rgba(79, 70, 229, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.3);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #A5B4FC;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    /* Column 2: Active Batch Queue */
+    .col-queue {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .queue-top-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+
+    .queue-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #F8FAFC;
+    }
+
+    .queue-progress-pill {
+      font-size: 12.5px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #A5B4FC;
+      background: rgba(79, 70, 229, 0.16);
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 7px;
+      background: #1E293B;
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+
+    .progress-fill {
+      width: 68%;
+      height: 100%;
+      background: linear-gradient(90deg, #4F46E5, #818CF8);
+      border-radius: 999px;
+      box-shadow: 0 0 12px rgba(99, 102, 241, 0.7);
+    }
+
+    .queue-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .q-card {
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 11px;
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .q-card.active {
+      border-color: rgba(99, 102, 241, 0.55);
+      background: rgba(17, 24, 46, 0.95);
+      box-shadow: 0 4px 20px rgba(79, 70, 229, 0.2);
+    }
+
+    .q-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tag-active {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: rgba(99, 102, 241, 0.22);
+      color: #A5B4FC;
+      border: 1px solid rgba(99, 102, 241, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tag-done {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 5px;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .tag-queued {
+      font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #94A3B8;
+      background: rgba(148, 163, 184, 0.1);
+      padding: 3px 8px;
+      border-radius: 5px;
+      border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .q-time {
+      font-size: 12px;
+      color: #64748B;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .q-text {
+      font-size: 13px;
+      color: #E2E8F0;
+      font-weight: 500;
+      line-height: 1.4;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .q-footer-info {
+      font-size: 11.5px;
+      color: #38BDF8;
+      font-family: 'JetBrains Mono', monospace;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Column 3: Media Output & Downloads */
+    .col-downloads {
+      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .media-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .media-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 12px;
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+    }
+
+    .media-icon-box {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .media-icon-box.video {
+      background: rgba(79, 70, 229, 0.2);
+      color: #818CF8;
+      border: 1px solid rgba(99, 102, 241, 0.3);
+    }
+
+    .media-icon-box.image {
+      background: rgba(56, 189, 248, 0.18);
+      color: #38BDF8;
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+
+    .media-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .media-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: #F1F5F9;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .media-meta {
+      font-size: 11.5px;
+      color: #34D399;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .save-path-pill {
+      font-size: 11.5px;
+      font-family: 'JetBrains Mono', monospace;
+      color: #64748B;
+      padding: 10px;
+      background: rgba(8, 13, 26, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-edge-highlight"></div>
+  <div class="bg-grid"></div>
+  <div class="ambient-glow-top"></div>
+  <div class="ambient-glow-bottom"></div>
+
+  <!-- Hero Top -->
+  <div class="hero-section">
+    <div class="pill-tag">
+      <span class="pill-beacon"></span>
+      Chrome Extension &bull; Manifest V3 &bull; Local Engine
+    </div>
+
+    <h1 class="brand-title">
+      <span class="brand-icon-box">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+        </svg>
+      </span>
+      Gemini Generator
+    </h1>
+
+    <p class="brand-subtitle">
+      High-throughput batch prompt automation and native media downloader for Google Gemini. Runs 100% locally in Chrome's side panel with zero external dependencies and no artificial limits.
+    </p>
+
+    <div class="features-ribbon">
+      <div class="feature-chip">
+        <span class="chip-icon indigo">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="m13 2-2 10h9L7 22l2-10H0l4-10h9Z"/></svg>
+        </span>
+        Unlimited Batch Queue
+      </div>
+
+      <div class="feature-chip">
+        <span class="chip-icon emerald">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 12 2 2 4-4"/></svg>
+        </span>
+        100% Offline Selectors
+      </div>
+
+      <div class="feature-chip">
+        <span class="chip-icon sky">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+        </span>
+        Auto Video & Image Downloader
+      </div>
+
+      <div class="feature-chip">
+        <span class="chip-icon amber">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </span>
+        Adaptive Throttling Delays
+      </div>
+    </div>
+  </div>
+
+  <!-- Panoramic Console Bottom -->
+  <div class="console-container">
+    <div class="console-titlebar">
+      <div class="mac-buttons">
+        <div class="mac-dot red"></div>
+        <div class="mac-dot yellow"></div>
+        <div class="mac-dot green"></div>
+      </div>
+
+      <div class="console-nav-tabs">
+        <div class="nav-tab active">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" x2="8" y1="13" y2="13"/><line x1="16" x2="8" y1="17" y2="17"/></svg>
+          Text Queue
+        </div>
+        <div class="nav-tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+          Image Batch
+        </div>
+        <div class="nav-tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+          Video Studio
+        </div>
+        <div class="nav-tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 14 14"/></svg>
+          History
+        </div>
+        <div class="nav-tab">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg>
+          Settings
+        </div>
+      </div>
+
+      <div class="status-badge-chip">
+        <span class="live-dot"></span>
+        AUTOMATION ACTIVE
+      </div>
+    </div>
+
+    <!-- 3-Column Console Body -->
+    <div class="console-body">
+      <!-- Col 1: Config -->
+      <div class="col-sidebar">
+        <div>
+          <div class="col-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#818CF8" stroke-width="2.2"><path d="M4 21v-7"/><path d="M4 10V3"/><path d="M12 21v-9"/><path d="M12 8V3"/><path d="M20 21v-5"/><path d="M20 12V3"/><path d="M1 14h6"/><path d="M9 8h6"/><path d="M17 16h6"/></svg>
+            Execution Parameters
+          </div>
+          <div class="config-list">
+            <div class="config-row">
+              <span class="config-row-label">Execution Mode</span>
+              <span class="config-row-val val-indigo">Sequential Queue</span>
+            </div>
+            <div class="config-row">
+              <span class="config-row-label">Adaptive Delay</span>
+              <span class="config-row-val">3.0s – 5.5s</span>
+            </div>
+            <div class="config-row">
+              <span class="config-row-label">Concurrency</span>
+              <span class="config-row-val val-active">Tab Lock Active</span>
+            </div>
+            <div class="config-row">
+              <span class="config-row-label">Daily Limit</span>
+              <span class="config-row-val val-active">Disabled (Unlimited)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="selector-status-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          <span>Offline Selectors: 16/16 Locked</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Live Queue -->
+      <div class="col-queue">
+        <div>
+          <div class="queue-top-status">
+            <div class="queue-name">Active Queue &bull; Batch #08 (Hindi Documentaries)</div>
+            <div class="queue-progress-pill">34 / 50 Prompts (68%)</div>
+          </div>
+
+          <div class="progress-bar">
+            <div class="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="queue-cards">
+          <!-- Active Card -->
+          <div class="q-card active">
+            <div class="q-card-head">
+              <span class="tag-active">
+                <span class="live-dot" style="background:#818CF8; box-shadow:0 0 8px #818CF8;"></span>
+                Processing Turn 1/3
+              </span>
+              <span class="q-time">Elapsed: 04.2s &bull; Throttle: 3.5s</span>
+            </div>
+            <div class="q-text">
+              Prompt 35: "Generate complete Hindi industrial documentary script for continuous cold-rolling steel mills..."
+            </div>
+            <div class="q-footer-info">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+              Streaming DOM response &bull; Auto-download video output enabled
+            </div>
+          </div>
+
+          <!-- Queued Card -->
+          <div class="q-card">
+            <div class="q-card-head">
+              <span class="tag-queued">Queued Next</span>
+              <span class="q-time">Turn 36 of 50</span>
+            </div>
+            <div class="q-text" style="color: #94A3B8;">
+              Prompt 36: "Formulate technical specifications and metallurgical defect parameters for hydraulic stamping dies..."
+            </div>
+          </div>
+
+          <!-- Completed Card -->
+          <div class="q-card">
+            <div class="q-card-head">
+              <span class="tag-done">&check; Completed & Saved</span>
+              <span class="q-time">Execution: 05.8s &bull; Media Grabbed</span>
+            </div>
+            <div class="q-text" style="color: #64748B;">
+              Prompt 34: "Produce cinematic aerial shot of blast furnace operations with high-temperature color grading..."
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Col 3: Downloads -->
+      <div class="col-downloads">
+        <div>
+          <div class="col-title">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" stroke-width="2.2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></svg>
+            Auto Captured Media
+          </div>
+          <div class="media-list">
+            <div class="media-item">
+              <div class="media-icon-box video">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m22 8-6 4 6 4V8Z"/><rect width="14" height="12" x="2" y="6" rx="2"/></svg>
+              </div>
+              <div class="media-info">
+                <div class="media-name">copper_wire_extrusion.mp4</div>
+                <div class="media-meta">&check; Saved (1080p &bull; 18.4 MB)</div>
+              </div>
+            </div>
+
+            <div class="media-item">
+              <div class="media-icon-box image">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+              </div>
+              <div class="media-info">
+                <div class="media-name">blast_furnace_drone_view.png</div>
+                <div class="media-meta">&check; Saved (4K &bull; 4.2 MB)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="save-path-pill">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#64748B" stroke-width="2"><path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z"/></svg>
+          <span>Target: /Downloads/Gemini/Media/</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
