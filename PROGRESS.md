@@ -13,6 +13,26 @@
 
 ## Progress log
 
+### 2026-09-25: Remove language options, rename to Gemini Generator, and bump version to 1.0
+
+**Duration:** ~10 minutes
+**Status:** Done
+
+#### What changed
+- Removed the language selector dropdown from the side panel header
+- Removed the language configuration section from the Settings tab
+- Renamed the extension to "Gemini Generator" in manifest.json, side panel HTML, and application headers
+- Set the extension version to 1.0 (version and version_name in manifest.json and internal version state)
+- Disabled remote update check modal that targeted external developer endpoints
+
+#### Files touched
+- `manifest.json`: Updated extension name, default title, and version to 1.0
+- `src/ui/side-panel/index.html`: Updated page title to Gemini Generator
+- `assets/index.html-CFx1nEy_.js`: Removed language UI elements from header and settings, updated UI titles, set version to 1.0, and disabled update checker
+- `PROGRESS.md`: Recorded UI cleanup and version bump
+
+---
+
 ### 2026-09-25: Convert extension to English only
 
 **Duration:** ~10 minutes
