@@ -1,9 +1,17 @@
+<div align="center">
+
+![Gemini Generator](assets/banner.png)
+
 # Gemini Generator
+
+Batch prompt automation and media downloader Chrome extension for Google Gemini.
 
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
 [![Version](https://img.shields.io/badge/Version-1.0-4F46E5.svg)](https://github.com/Yeamin-Sheikh/Gemini-Generator/releases/tag/v1.0)
 [![Chrome Extension](https://img.shields.io/badge/Platform-Chrome-4285F4.svg)](https://www.google.com/chrome/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+
+</div>
 
 Gemini Generator is a Chrome extension for batch prompt automation and automatic media downloading on Google Gemini (gemini.google.com). It runs directly inside Chrome's native side panel, allowing you to queue multi-line prompts, import spreadsheets, configure random delays, and save generated text, image, and video outputs to local storage.
 
@@ -81,6 +89,7 @@ Gemini-Generator/
 ├── service-worker-loader.js   Entry point for background service worker
 ├── logo.png                   Extension icon asset
 ├── assets/
+│   ├── banner.png             Project header banner graphic
 │   ├── catchUploadFile.*.js   DOM file upload injector for Gemini attachments
 │   ├── index-*.css            Tailwind CSS styling and Electric Indigo theme tokens
 │   ├── index.html-*.js        Compiled Vue side panel application logic and UI

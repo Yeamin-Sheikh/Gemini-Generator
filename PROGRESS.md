@@ -13,6 +13,23 @@
 
 ## Progress log
 
+### 2026-09-25: Add visual banner to README
+
+**Duration:** ~5 minutes
+**Status:** Done
+
+#### What changed
+- Generated a high-resolution 16:9 banner showcasing the extension identity, batch processing queue, and media capabilities in Electric Indigo styling
+- Saved graphic asset to `assets/banner.png`
+- Embedded banner at the top of README.md with centered alignment and updated file structure tree
+
+#### Files touched
+- `assets/banner.png`: Project banner asset
+- `README.md`: Added banner embedding and tree reference
+- `PROGRESS.md`: Recorded banner addition
+
+---
+
 ### 2026-09-25: Overhaul README and add MIT license
 
 **Duration:** ~5 minutes
