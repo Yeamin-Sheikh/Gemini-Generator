@@ -7,7 +7,7 @@
 Batch prompt automation and media downloader Chrome extension for Google Gemini.
 
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
-[![Version](https://img.shields.io/badge/Version-1.0-4F46E5.svg)](https://github.com/Yeamin-Sheikh/Gemini-Generator/releases/tag/v1.0)
+[![Version](https://img.shields.io/badge/Version-1.1-4F46E5.svg)](https://github.com/Yeamin-Sheikh/Gemini-Generator/releases/tag/v1.1)
 [![Chrome Extension](https://img.shields.io/badge/Platform-Chrome-4285F4.svg)](https://www.google.com/chrome/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
@@ -49,7 +49,7 @@ The extension is self-contained. All automation selectors and logic run locally 
 
 ### Option 1: Load from release archive
 
-1. Download `Gemini-Generator-v1.0.zip` from the [Releases page](https://github.com/Yeamin-Sheikh/Gemini-Generator/releases/tag/v1.0).
+1. Download `Gemini-Generator-v1.1.zip` from the [Releases page](https://github.com/Yeamin-Sheikh/Gemini-Generator/releases/tag/v1.1).
 2. Extract the zip archive to a local folder on your computer.
 3. Open Google Chrome and navigate to `chrome://extensions/`.
 4. Turn on the Developer mode toggle in the top-right corner.

@@ -13,6 +13,26 @@
 
 ## Progress log
 
+### 2026-09-25: Bump version to 1.1 and publish release v1.1
+
+**Duration:** ~5 minutes
+**Status:** Done
+
+#### What changed
+- Bumped extension version to 1.1 across manifest.json, remoteConfig.js, side panel bundle, and documentation
+- Updated release archive download links and SVG badges in README.md
+- Packaged clean release archive Gemini-Generator-v1.1.zip
+- Pushed changes to GitHub repository and published release v1.1
+
+#### Files touched
+- `manifest.json`: Bumped version and version_name to 1.1
+- `assets/remoteConfig-CLW4nOVG.js`: Bumped localConfig version to 1.1
+- `assets/index.html-CFx1nEy_.js`: Bumped internal side panel version constant to 1.1
+- `README.md`: Updated badge and release links to v1.1
+- `PROGRESS.md`: Recorded v1.1 bump and release
+
+---
+
 ### 2026-09-25: Conduct extension security and code audit
 
 **Duration:** ~15 minutes

@@ -1,5 +1,5 @@
 const localConfig = {
-  version: "1.0",
+  version: "1.1",
   selectors: {
     newChat: 'gem-icon-button:has(mat-icon[data-mat-icon-name="gemini_chat"]), gem-icon:has(mat-icon[data-mat-icon-name="gemini_chat"])',
     removeSelectedModeButton: 'button:has(mat-icon[data-mat-icon-name="close"]):last()',
