@@ -13,6 +13,23 @@
 
 ## Progress log
 
+### 2026-09-25: Overhaul README and add MIT license
+
+**Duration:** ~5 minutes
+**Status:** Done
+
+#### What changed
+- Rewrote README.md with SVG badges, automation mode reference tables, capabilities overview, and usage instructions
+- Documented file structure, local architecture, and required Chrome permissions
+- Created LICENSE file with standard MIT terms
+
+#### Files touched
+- `README.md`: Professional project documentation rewrite
+- `LICENSE`: MIT license terms
+- `PROGRESS.md`: Recorded documentation overhaul
+
+---
+
 ### 2026-09-25: Make repository public and publish release v1.0
 
 **Duration:** ~5 minutes
