@@ -13,6 +13,27 @@
 
 ## Progress log
 
+### 2026-09-25: Conduct extension security and code audit
+
+**Duration:** ~15 minutes
+**Status:** Done
+
+#### What changed
+- Executed comprehensive adversarial audit across network requests, manifest permissions, DOM selector stability, quota logic, and runtime lifecycles
+- Stripped remaining outbound auth and plan verification network requests to configs.kylenguyen.me
+- Neutralized bug report telemetry redirect, converting the action to pure local clipboard log copying
+- Removed deprecated "background" permission from manifest.json to eliminate Chrome load warnings
+- Corrected favicon MIME type in side panel HTML to image/png
+- Verified offline selector execution and service worker port communication stability
+
+#### Files touched
+- `assets/index.html-CFx1nEy_.js`: Neutralized outbound auth calls, pricing URLs, and bug report redirects
+- `manifest.json`: Removed invalid background permission in Manifest V3
+- `src/ui/side-panel/index.html`: Fixed icon MIME type
+- `PROGRESS.md`: Recorded audit and remediation log
+
+---
+
 ### 2026-09-25: Redesign banner to 21:9 ultrawide panoramic studio console
 
 **Duration:** ~10 minutes
