@@ -13,6 +13,29 @@
 
 ## Progress log
 
+### 2026-09-25: Convert extension to English only
+
+**Duration:** ~10 minutes
+**Status:** Done
+
+#### What changed
+- Replaced multi-language translation dictionaries with a single English dictionary wrapped in a fallback Proxy
+- Hardcoded locale initialization and storage sync bindings to English ('en')
+- Restricted Settings panel language dropdowns to only English
+- Reduced bundle size by 962 KB by removing 19 non-English translation sets
+
+#### Files touched
+- `assets/index.html-CFx1nEy_.js`: Stripped non-English dictionaries, hardcoded locale to 'en', locked settings dropdown options
+- `PROGRESS.md`: Recorded English-only conversion
+
+#### Issues found
+- None
+
+#### Next steps
+- Verify extension behavior in Chrome side panel
+
+---
+
 ### 2026-09-25: Repository initialization and GitHub synchronization
 
 **Duration:** ~5 minutes
