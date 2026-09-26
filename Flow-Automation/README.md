@@ -5,9 +5,9 @@
 Batch prompt automation and media downloader Chrome extension for Google Flow.
 
 [![Manifest V3](https://img.shields.io/badge/Manifest-V3-blue.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
-[![Version](https://img.shields.io/badge/Version-1.0-4F46E5.svg)](https://github.com/Yeamin-Sheikh/Gemini-Generator)
+[![Version](https://img.shields.io/badge/Version-1.0-4F46E5.svg)](https://github.com/Yeamin-Sheikh/Flow-Automation/releases/tag/v1.0)
 [![Platform](https://img.shields.io/badge/Platform-Chrome-4285F4.svg)](https://www.google.com/chrome/)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](../Gemini-Generator/LICENSE)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 </div>
 
@@ -45,10 +45,24 @@ The extension operates with full offline autonomy. All 58 DOM automation selecto
 
 ## Installation
 
-1. Open Google Chrome and navigate to `chrome://extensions/`.
-2. Enable the Developer mode toggle in the top-right corner.
-3. Click the "Load unpacked" button in the top-left menu.
-4. Select the `Flow-Automation` folder containing `manifest.json`.
+### Option 1: Load from release archive
+
+1. Download `Flow-Automation-v1.0.zip` from the [Releases page](https://github.com/Yeamin-Sheikh/Flow-Automation/releases/tag/v1.0).
+2. Extract the zip archive to a local folder on your computer.
+3. Open Google Chrome and navigate to `chrome://extensions/`.
+4. Turn on the Developer mode toggle in the top-right corner.
+5. Click the "Load unpacked" button in the top-left menu.
+6. Select the extracted folder containing `manifest.json`.
+
+### Option 2: Clone from source
+
+1. Clone the repository locally:
+   ```bash
+   git clone https://github.com/Yeamin-Sheikh/Flow-Automation.git
+   ```
+2. Open Google Chrome and navigate to `chrome://extensions/`.
+3. Enable Developer mode.
+4. Click "Load unpacked" and select the cloned directory.
 
 ---
 
