@@ -13,6 +13,24 @@
 
 ## Progress log
 
+### 2026-09-26: Move extension into dedicated Gemini-Generator folder
+
+**Duration:** ~5 minutes
+**Status:** Done
+
+#### What changed
+- Relocated all Gemini Generator extension assets, manifest, background worker, and documentation into a dedicated `Gemini-Generator/` subfolder
+- Preserved complete git history via `git mv`
+- Updated render script to dynamically resolve assets relative to the subfolder location
+- Verified extension loads cleanly from `Gemini-Generator/` in Chrome
+
+#### Files touched
+- `Gemini-Generator/*`: Relocated all extension files
+- `Gemini-Generator/render_banner.py`: Updated relative asset path resolution
+- `PROGRESS.md`: Recorded folder reorganization
+
+---
+
 ### 2026-09-25: Bump version to 1.1 and publish release v1.1
 
 **Duration:** ~5 minutes

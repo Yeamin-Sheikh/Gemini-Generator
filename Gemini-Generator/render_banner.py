@@ -3,8 +3,8 @@ from pathlib import Path
 from playwright.async_api import async_playwright
 
 async def render():
-    html_path = Path(r"e:\Scripts\Gemini Generator\assets\banner_template.html").resolve()
-    out_path = Path(r"e:\Scripts\Gemini Generator\assets\banner.png").resolve()
+    html_path = (Path(__file__).parent / "assets" / "banner_template.html").resolve()
+    out_path = (Path(__file__).parent / "assets" / "banner.png").resolve()
     
     async with async_playwright() as p:
         browser = await p.chromium.launch()
