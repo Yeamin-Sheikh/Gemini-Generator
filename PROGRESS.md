@@ -6,12 +6,32 @@
 
 - **Project:** Gemini Generator
 - **Started:** 2026-09-25
-- **Last updated:** 2026-09-26
+- **Last updated:** 2026-09-27
 - **Status:** Active
 
 ---
 
 ## Progress log
+
+### 2026-09-27: Publish public repository and release Flow Automation v1.0
+
+**Duration:** ~5 minutes
+**Status:** Done
+
+#### What changed
+- Created public GitHub repository Yeamin-Sheikh/Flow-Automation
+- Added MIT license and .gitignore for release packaging
+- Initialized main branch with root manifest layout for direct Chrome load unpacked support
+- Built standalone release archive Flow-Automation-v1.0.zip containing all extension assets
+- Published GitHub release v1.0 with release notes and downloadable zip package
+
+#### Files touched
+- `Flow-Automation/LICENSE`: Added MIT license terms
+- `Flow-Automation/.gitignore`: Added file exclusions for releases and system files
+- `Flow-Automation/README.md`: Updated release badges and installation links
+- `PROGRESS.md`: Recorded repository creation and v1.0 release
+
+---
 
 ### 2026-09-26: Overhaul Flow Automation extension for local autonomy
 
