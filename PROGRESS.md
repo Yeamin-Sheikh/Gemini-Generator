@@ -6,12 +6,41 @@
 
 - **Project:** Gemini Generator
 - **Started:** 2026-09-25
-- **Last updated:** 2026-09-25
+- **Last updated:** 2026-09-26
 - **Status:** Active
 
 ---
 
 ## Progress log
+
+### 2026-09-26: Overhaul Flow Automation extension for local autonomy
+
+**Duration:** ~25 minutes
+**Status:** Done
+
+#### What changed
+- Rebranded extension to "Flow Automation" at version 1.0 across manifest, UI titles, and configuration
+- Embedded all 58 Google Flow DOM selectors locally into remoteConfig-MBhMtTF0.js, eliminating external network dependencies
+- Removed 19 non-English translation dictionaries and implemented an English fallback Proxy, reducing bundle size from 2.14 MB to 1.16 MB
+- Bypassed 10-prompt daily quota check (isLimitReached set to false) to unlock unlimited batch processing
+- Neutralized remote auth and plan verification network requests, permanently enabling pro status
+- Removed top header markup containing author links, user guide, Discord, and upgrade banner so control tabs start directly at the top
+- Removed external install tab redirection from background service worker
+- Registered chrome.runtime.onConnect listener in service worker to eliminate port connection errors
+- Cleaned manifest.json by stripping update_url, author email, and invalid background permission
+- Updated side panel HTML favicon MIME type to image/png
+- Created comprehensive Flow-Automation/README.md documentation
+
+#### Files touched
+- `Flow-Automation/manifest.json`: Cleaned permissions, updated name and version to 1.0
+- `Flow-Automation/src/ui/side-panel/index.html`: Updated title and favicon MIME type
+- `Flow-Automation/assets/remoteConfig-MBhMtTF0.js`: Embedded 58 local selectors and synchronous exports
+- `Flow-Automation/assets/index.ts-JOA60J3L.js`: Stripped install redirect and added onConnect handler
+- `Flow-Automation/assets/index.html-CXPV2IMv.js`: Enforced English, bypassed quotas, neutralized auth, removed top header
+- `Flow-Automation/README.md`: Created extension documentation
+- `PROGRESS.md`: Recorded overhaul of Flow Automation
+
+---
 
 ### 2026-09-26: Move extension into dedicated Gemini-Generator folder
 
