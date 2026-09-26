@@ -298,3 +298,25 @@
 #### Next steps
 - Ready for feature development and ongoing maintenance
 
+
+---
+
+### 2026-09-27: Mascot transparency and Electric Indigo UI theme replacement
+
+**Status:** Done
+
+#### What changed
+- Isolated otter mascot logo with clean alpha channel antialiasing and white fringe removal
+- Replaced logo assets with 512x512 transparent RGBA PNG files in Flow Automation
+- Replaced emerald green PrimeVue primary palette tokens with Electric Indigo tokens
+- Replaced Tailwind CSS variables with Electric Indigo primary accents and deep Slate Navy dark mode surfaces
+- Rebuilt release archive Flow-Automation-v1.0.zip
+- Synchronized commits and updated release v1.0 asset on GitHub
+
+#### Files touched
+- Flow-Automation/logo.png: Transparent RGBA mascot icon
+- Flow-Automation/src/assets/logo.png: Transparent RGBA manifest icon
+- Flow-Automation/assets/index-njnYzn3D.css: CSS palette variables
+- Flow-Automation/assets/index.html-CXPV2IMv.js: PrimeVue semantic theme mapping
+- Flow-Automation-v1.0.zip: Repackaged release bundle
+- PROGRESS.md: Updated progress tracking log
